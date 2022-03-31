@@ -22,6 +22,7 @@ that simply tells the city planner
 - if a pixel is suitable for a building/road (ie. land)
 - if a pixel can be bridged over (ie. generally a river)
 - if a pixel is suitable for a Dock (ie. generally a sheltered harbour)
+
 Otherwise a pixel might be none of these (it could be out of bounds, a lake of fire, a cliff face or ..whatever).
 
 Then we provide two configs & our outline to the New function (see [config.go](https://github.com/voidshard/citygraph/blob/main/config.go) and the [example](https://github.com/voidshard/citygraph/blob/main/examples/testmap/main.go))
