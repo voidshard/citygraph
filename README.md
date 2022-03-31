@@ -34,6 +34,8 @@ citygraph.New(&citygraph.BuilderConfig{}, &citygraph.CityConfig{}, myOutline)
 
 ### Notes
 
+Currently we don't actually render rivers / sea / unusable pixels. You can see in the above map that we don't put buildings towards the top edge (sea) or down the middle 10px (river).
+
 All buildings to citygraph are rectangles -- we don't care if it represents a full building, a building surrounded by a fence, a fountain, garden, statue or whatever else -- citygraph cares about how much space it takes up, where & how frequently it occurs.
 
 Given the same configuration(s) and seed the output map is *nearly* the same. There is variation due to (I believe) rounding in libs we lean on (particularly around voronoi diagram edges / verticies)
