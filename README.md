@@ -2,7 +2,8 @@
 
 Create highly configurable orthogonal city layouts, semi or fully randomly, to export as JSON or render as images.
 
-![example](https://raw.githubusercontent.com/voidshard/citygraph/main/assets/citygraph.1648738746739963194.png)
+![example](https://raw.githubusercontent.com/voidshard/citygraph/main/assets/citygraph.1648738746739963194.png) 
+[map legend](https://github.com/voidshard/citygraph/blob/main/citymap.go#L100)
 
 
 ### Why
