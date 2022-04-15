@@ -22,6 +22,7 @@ type DistrictConfig struct {
 	RoadWidth                int             // width of roads within district
 	RoadDensity              float64         // higher values will create more roads
 	MaxBridges               int             // bridges allowed inside the district
+	MaxBuildings             int             // max number of buildings (of any type) in district (0 is 'no limit')
 	BuildingDensity          float64         // where 1 is "place a building where-ever possible" and 0 is "place nothing"
 	HasFortifications        bool            // true if the district is surrounded by city wall / towers / gatehouses
 	HasCurtainFortifications bool            // true if the district has it's own wall / towers / gatehouse

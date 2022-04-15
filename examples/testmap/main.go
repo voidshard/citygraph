@@ -70,6 +70,25 @@ func main() {
 		panic(err)
 	}
 
+	fmt.Printf("==stats==\nDistrictsByType: %v\n\n", cg.Stats.DistrictsByType)
+	total := map[int]int{}
+	for _, d := range cg.Districts {
+		for id, count := range d.Stats.BuildingsByID {
+			n, _ := total[id]
+			total[id] = n + count
+		}
+
+		fmt.Printf(
+			"\t %s district (%d, %v):\n\t\tBuildings (sans central):%d Roads:%d\n\t\tWalls:%d Towers:%d Gates:%d\n\t\tBuildingsByID:%v\n\n",
+			d.Type, d.ID, d.Site,
+			len(d.Buildings),
+			len(d.Roads),
+			len(d.Walls), len(d.Towers), len(d.Gates),
+			d.Stats.BuildingsByID,
+		)
+	}
+	fmt.Printf("\n==total==\n\tBuildingsByID:%v\n", total)
+
 	cm := cg.Map()
 
 	err = cm.SaveAdv(fmt.Sprintf("citygraph.%d.png", cg.Seed), citygraph.DefaultScheme())
@@ -93,7 +112,7 @@ func defaultConfig() *citygraph.BuilderConfig {
 	}
 
 	small := &citygraph.BuildingConfig{
-		Area:        image.Rect(0, 0, 5, 5),
+		Area:        image.Rect(0, 0, 8, 8),
 		Probability: 0.20,
 		ID:          1, // nb. building IDs must be > 0
 	}
@@ -110,12 +129,12 @@ func defaultConfig() *citygraph.BuilderConfig {
 			Buildings: []*citygraph.BuildingConfig{ // building footprint sizes
 				small,
 				&citygraph.BuildingConfig{
-					Area:        image.Rect(0, 0, 7, 7),
+					Area:        image.Rect(0, 0, 9, 9),
 					Probability: 0.10,
 					ID:          2,
 				},
 				&citygraph.BuildingConfig{
-					Area:        image.Rect(0, 0, 11, 11),
+					Area:        image.Rect(0, 0, 12, 12),
 					Probability: 0.05,
 					ID:          3,
 				},
@@ -124,13 +143,13 @@ func defaultConfig() *citygraph.BuilderConfig {
 	}
 
 	tiny := &citygraph.BuildingConfig{
-		Area:        image.Rect(0, 0, 3, 3),
+		Area:        image.Rect(0, 0, 5, 5),
 		Probability: 0.50,
 		ID:          4,
 	}
 
 	huge := &citygraph.BuildingConfig{
-		Area:        image.Rect(0, 0, 20, 20),
+		Area:        image.Rect(0, 0, 16, 16),
 		Probability: 0.3,
 		ID:          5,
 	}

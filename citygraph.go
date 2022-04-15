@@ -533,10 +533,16 @@ func (c *Citygraph) addBuildingsToDistrict(d *District, dcfg *DistrictConfig, si
 				c.cmap.setBuilding(x, bnds.Min.Y+i, b)
 				d.addBuilding(x, bnds.Min.Y+i, b)
 			}
+			if dcfg.MaxBuildings > 0 && len(d.Buildings) >= dcfg.MaxBuildings {
+				return nil
+			}
 			if c.rng.Float64() < dcfg.BuildingDensity {
 				b := distbuild.chooseBuilding(x, bnds.Max.Y-i)
 				c.cmap.setBuilding(x, bnds.Max.Y-1-i, b)
 				d.addBuilding(x, bnds.Max.Y-1-i, b)
+			}
+			if dcfg.MaxBuildings > 0 && len(d.Buildings) >= dcfg.MaxBuildings {
+				return nil
 			}
 		}
 
@@ -546,10 +552,16 @@ func (c *Citygraph) addBuildingsToDistrict(d *District, dcfg *DistrictConfig, si
 				c.cmap.setBuilding(bnds.Min.X+i, y, b)
 				d.addBuilding(bnds.Min.X+i, y, b)
 			}
+			if dcfg.MaxBuildings > 0 && len(d.Buildings) >= dcfg.MaxBuildings {
+				return nil
+			}
 			if c.rng.Float64() < dcfg.BuildingDensity {
 				b := distbuild.chooseBuilding(bnds.Max.X-i, y)
 				c.cmap.setBuilding(bnds.Max.X-1-i, y, b)
 				d.addBuilding(bnds.Max.X-1-i, y, b)
+			}
+			if dcfg.MaxBuildings > 0 && len(d.Buildings) >= dcfg.MaxBuildings {
+				return nil
 			}
 		}
 
